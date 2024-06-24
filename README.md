@@ -38,10 +38,17 @@ Usage: crtfinder [options]
 
 Options: [flag] [argument] [Description]
 
-  -d string[]   Domains to find subdomains for ( can be comma separated )
+INPUT:
+  -d string[]   Domains to find subdomains for (comma separated)
   -dL FILE      Input file containing a list of domains
-  -r bool       For recursively finding subdomains ( Time consuming )
+
+FEATURES:
+  -r int        For recursively finding subdomains with time gap between requests (default: 5s)
+
+OUTPUT:
   -o string     Output file to store the subdomains
+
+DEBUG:
   -v none       Check current version
 ```
 
