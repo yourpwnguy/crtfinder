@@ -14,7 +14,7 @@ func Banner() {
 / /__/ /  / /_/ __/ / / / / /_/ /  __/ /    
 \___/_/   \__/_/ /_/_/ /_/\__,_/\___/_/     
 	
-   Developed by github.com/iaakanshff ` + "(" + g.Bold(g.Green("v1.0")) + ")"
+   Developed by github.com/iaakanshff ` + "(" + g.BrGreen(("v1.0")) + ")"
 
 	fmt.Fprintln(os.Stderr, banner + "\n")
 }

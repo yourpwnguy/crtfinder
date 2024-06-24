@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/iaakanshff/gostyle"
@@ -13,7 +14,8 @@ import (
 type Options struct {
 	Domains   []string // Domains list
 	File      string   // Input file
-	Recursive int     // Recursive approach
+	Recursive bool     // Recursive approach
+	Delay     int      // Time gap
 	Version   bool     // Version info
 	Output    string   // Output file
 }
@@ -37,17 +39,21 @@ func ParseOptions() (Options, error) {
 	// For other flags
 	flag.StringVar(&options.Output, "o", "", "")
 	flag.StringVar(&options.File, "dL", "", "")
-	flag.IntVar(&options.Recursive, "r", 5, "")
+	flag.BoolVar(&options.Recursive, "r", false, "")
 	flag.BoolVar(&options.Version, "v", false, "")
 
 	// Customize usage message
 	flag.Usage = func() {
 		h := "\nUsage: crtfinder [options]\n\n"
 		h += "Options: [flag] [argument] [Description]\n\n"
-		h += "  -d string[]\tDomains to find subdomains for ( can be comma separated )\n"
-		h += "  -dL FILE\tInput file containing a list of domains\n"
-		h += "  -r int\tFor recursively finding subdomains (default time gap between requests: 5s)\n"
-		h += "  -o string\tOutput file to store the subdomains\n"
+		h += "INPUT:\n"
+		h += "  -d string[]\tDomains to find subdomains for (comma separated)\n"
+		h += "  -dL FILE\tInput file containing a list of domains\n\n"
+		h += "FEATURES:\n"
+		h += "  -r int\tFor recursively finding subdomains with time gap between requests (default: 5s)\n\n"
+		h += "OUTPUT:\n"
+		h += "  -o string\tOutput file to store the subdomains\n\n"
+		h += "DEBUG:\n"
 		h += "  -v none\tCheck current version\n"
 		fmt.Fprint(flag.CommandLine.Output(), h)
 	}
@@ -86,6 +92,51 @@ func ParseOptions() (Options, error) {
 	} else {
 		// Handling the commas, and getting the slice of domains
 		options.Domains = parseDomain(strings.TrimSpace(*domain))
+	}
+
+	// For dynamically fetching the -r flag and setting it accordingly
+	for index, arg := range os.Args {
+
+		// Fetch the flag from cli arguments
+		if arg == "-r" {
+
+			// Check if the index+1 doesn't exceed the bounds
+			if index+1 < len(os.Args) {
+
+				// Check if the next argument after -r is not null
+				if os.Args[index+1] != "" {
+
+					// Convert string to int
+					delay, err := strconv.Atoi(os.Args[index+1])
+					if err != nil {
+						fmt.Println(Errfix + "The given argument is not an integer")
+						return options, fmt.Errorf("")
+					}
+
+					// Set the recursivity
+					options.Recursive = true
+
+					// Check if delay is less than 0
+					if delay > 0 {
+
+						// Set the given delay value
+						options.Delay = delay
+					} else {
+						fmt.Println(Errfix + "Delay should be not be less than 0")
+						return options, fmt.Errorf("")
+					}
+				}
+
+				// If no argument is given after -r, set the default value
+			} else {
+
+				// Set the recursivity
+				options.Recursive = true // If -r is provided without a value, use the default Delay
+
+				// Set the default delay value
+				options.Delay = 5
+			}
+		}
 	}
 
 	// Returning the options struct

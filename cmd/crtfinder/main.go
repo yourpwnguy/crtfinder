@@ -26,7 +26,7 @@ func main() {
 		currTime := time.Now()
 
 		// Here we process the domain
-		subdomains, err := runner.ProcessDomain(domain, &options.Recursive)
+		subdomains, err := runner.ProcessDomain(domain, &options)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			return

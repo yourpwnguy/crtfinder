@@ -61,7 +61,7 @@ func makeRequest(domain string) ([]ResponseItem, error) {
 }
 
 // Function for processing the subdomains
-func ProcessDomain(domain string, recursive *int) ([]string, error) {
+func ProcessDomain(domain string, options *Options) ([]string, error) {
 
 	// Logging Message
 	fmt.Fprintln(os.Stderr, Succfix+"Enumerating subdomains for", "\""+g.Bold(g.Yellow(domain))+"\"")
@@ -76,8 +76,8 @@ func ProcessDomain(domain string, recursive *int) ([]string, error) {
 	subdomainSet := extractsubDomains(responseItems, domain)
 
 	// If recursive flag is set
-	if *recursive > 0 {
-		fmt.Fprintln(os.Stderr, Succfix+"Recursive approach:", g.Green("ON"), "("+g.Red("Time consuming")+")")
+	if options.Recursive {
+		fmt.Fprintln(os.Stderr, Succfix+"Recursive approach:", g.BrGreen("ON"), "("+g.BrRed(fmt.Sprintf("Delay: %v", options.Delay))+")")
 		var wg sync.WaitGroup
 		subdomainChan := make(chan string)
 
@@ -101,7 +101,7 @@ func ProcessDomain(domain string, recursive *int) ([]string, error) {
 						subdomainChan <- subdomain
 					}
 				}(strings.TrimPrefix(subdomain, "*."))
-				time.Sleep(time.Duration(*recursive) * time.Second)
+				time.Sleep(time.Duration(options.Delay) * time.Second)
 			}
 		}
 
@@ -110,6 +110,7 @@ func ProcessDomain(domain string, recursive *int) ([]string, error) {
 			close(subdomainChan)
 		}()
 
+		// Iterating over the subdomains received from chan
 		for subdomain := range subdomainChan {
 			subdomainSet[subdomain] = struct{}{}
 		}
