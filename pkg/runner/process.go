@@ -77,7 +77,7 @@ func ProcessDomain(domain string, options *Options) ([]string, error) {
 
 	// If recursive flag is set
 	if options.Recursive {
-		fmt.Fprintln(os.Stderr, Succfix+"Recursive approach:", g.BrGreen("ON"), "("+g.BrRed(fmt.Sprintf("Delay: %v", options.Delay))+")")
+		fmt.Fprintln(os.Stderr, Succfix+"Recursive approach:", g.BrGreen("ON"), "("+g.BrRed(fmt.Sprintf("Delay: %vs", options.Delay))+")")
 		var wg sync.WaitGroup
 		subdomainChan := make(chan string)
 
