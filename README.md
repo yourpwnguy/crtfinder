@@ -28,6 +28,7 @@ To install the crtfinder tool, you can simply run the following command.
 
 ```bash
 go install -v "github.com/yourpwnguy/crtfinder/cmd/crtfinder@latest"
+
 # Do the below step only if your "~/go/bin" is not in PATH
 cp ~/go/bin/refine /usr/local/bin/
 ```
