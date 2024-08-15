@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/iaakanshff/gostyle"
+	"github.com/yourpwnguy/gostyle"
 )
 
 // Struct to hold our cli arguments

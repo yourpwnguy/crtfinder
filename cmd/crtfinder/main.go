@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/iaakanshff/crtfinder/pkg/runner"
+	"github.com/yourpwnguy/crtfinder/pkg/runner"
 )
 
 func main() {
