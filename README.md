@@ -1,17 +1,17 @@
 <div align="center">
 
-![GoStyle LOGO](https://i.imgur.com/69aPTml.png)
+![Crtfinder LOGO](https://i.imgur.com/69aPTml.png)
 
 </div>
 <h4 align="center">Fast and efficient subdomain enumeration tool utilizing crt.sh to identify subdomains recursively.</h4>
 <p align="center">
-<img src="https://img.shields.io/github/go-mod/go-version/iaakanshff/crtfinder">
-<!-- <a href="https://github.com/iaakanshff/crtfinder/releases"><img src="https://img.shields.io/github/downloads/iaakanshff/crtfinder/total"> -->
-<a href="https://github.com/iaakanshff/crtfinder/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/iaakanshff/crtfinder">
-<!-- <a href="https://github.com/iaakanshff/crtfinder/releases/"><img src="https://img.shields.io/github/release/iaakanshff/crtfinder"> -->
-<a href="https://github.com/iaakanshff/crtfinder/issues"><img src="https://img.shields.io/github/issues-raw/iaakanshff/crtfinder">
-<a href="https://github.com/iaakanshff/crtfinder/stars"><img src="https://img.shields.io/github/stars/iaakanshff/crtfinder">
-<!-- <a href="https://github.com/iaakanshff/crtfinder/discussions"><img src="https://img.shields.io/github/discussions/iaakanshff/crtfinder"> -->
+<img src="https://img.shields.io/github/go-mod/go-version/yourpwnguy/crtfinder">
+<!-- <a href="https://github.com/yourpwnguy/crtfinder/releases"><img src="https://img.shields.io/github/downloads/yourpwnguy/crtfinder/total"> -->
+<a href="https://github.com/yourpwnguy/crtfinder/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/yourpwnguy/crtfinder">
+<!-- <a href="https://github.com/yourpwnguy/crtfinder/releases/"><img src="https://img.shields.io/github/release/yourpwnguy/crtfinder"> -->
+<a href="https://github.com/yourpwnguy/crtfinder/issues"><img src="https://img.shields.io/github/issues-raw/yourpwnguy/crtfinder">
+<a href="https://github.com/yourpwnguy/crtfinder/stars"><img src="https://img.shields.io/github/stars/yourpwnguy/crtfinder">
+<!-- <a href="https://github.com/yourpwnguy/crtfinder/discussions"><img src="https://img.shields.io/github/discussions/yourpwnguy/crtfinder"> -->
 </p>
 
 ---
@@ -28,7 +28,8 @@ To install the crtfinder tool, you can simply run the following command.
 
 ```bash
 go install -v "github.com/yourpwnguy/crtfinder/cmd/crtfinder@latest"
-cp ~/go/bin/crtfinder /usr/local/bin/
+# Do the below step only if your "~/go/bin" is not in PATH
+cp ~/go/bin/refine /usr/local/bin/
 ```
 
 ## Usage 📝
